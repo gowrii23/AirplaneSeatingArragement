@@ -71,16 +71,14 @@ public class SeatingArragementNewApp {
 				int[][] unitBlock = block.getBlock();
 				for(int i=0; i< unitBlock.length ; i++) {
 					for(int j=0; j< unitBlock[0].length ; j++) {
-						if(i == jumpBlocks) {
-							if(block instanceof BlockB  || block instanceof BlockC ){
-								continue;
-							}
-							if(  (block instanceof BlockA  && j==0 ) ||
-									(block instanceof BlockD  && j==unitBlock[0].length-1)){
-								unitBlock[i][j] = ++count;
-							}
+						if( (i == jumpBlocks) && (block instanceof BlockB  || block instanceof BlockC) ){
+							continue;
 						}
-						
+						if( i == jumpBlocks   && ((block instanceof BlockA  && j==0 ) ||
+								(block instanceof BlockD  && j==unitBlock[0].length-1))){
+							unitBlock[i][j] = ++count;
+						}
+
 					}
 				}
 				block.setBlock(unitBlock);
@@ -95,14 +93,12 @@ public class SeatingArragementNewApp {
 				int[][] unitBlock = block.getBlock();
 				for(int i=0; i< unitBlock.length ; i++) {
 					for(int j=0; j< unitBlock[0].length ; j++) {
-						if( i == jumpBlocks  ) {
-							if((block instanceof BlockA  && j==0 ) ||
-									(block instanceof BlockD  && j==unitBlock[0].length-1)){
-								continue;
-							}
-							if(j==unitBlock[0].length-1 || j==0) {
-								unitBlock[i][j] = ++count; 
-							}
+						if(i == jumpBlocks && (block instanceof BlockA  && j==0 ) ||
+								(block instanceof BlockD  && j==unitBlock[0].length-1)){
+							continue;
+						}
+						if(i == jumpBlocks && (j==unitBlock[0].length-1 || j==0)) {
+							unitBlock[i][j] = ++count; 
 						}
 					}
 				}
