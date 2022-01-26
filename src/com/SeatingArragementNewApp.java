@@ -24,8 +24,8 @@ public class SeatingArragementNewApp {
 		int count =0;
 		
 		//TODO:: max Row size is hardcoded
-		//Adding Aisle Seats
 		
+		//Adding Aisle Seats
 		count = setAisleSeats(map, count);
 		
 		//Adding Window Seats
