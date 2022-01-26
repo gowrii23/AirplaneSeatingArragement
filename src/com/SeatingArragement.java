@@ -19,6 +19,9 @@ public class SeatingArragement {
 
 	public static void main(String[] args) {
 		
+		//hardcoded Input 
+		int passengerCount = 30; 
+		
 		BlockA A = new BlockA();
 		BlockB B = new BlockB();
 		BlockC C = new BlockC();
@@ -33,10 +36,10 @@ public class SeatingArragement {
 		int count =0;
 		
 		for ( SeatTypes seat : SeatTypes.values() ) {
-			count = setSeats(map, count , seat);
+			count = setSeats(map, count , seat, passengerCount);
 		}
 			
-		System.out.println("val ==============>");
+		System.out.println("<==========SEATS==========>");
 		
 		
 		printSeatAllocation(map);
@@ -44,13 +47,17 @@ public class SeatingArragement {
 
 	}
 
-	private static int setSeats(Map<String, Block> map, int count, SeatTypes seat) {
+	private static int setSeats(Map<String, Block> map, int count, SeatTypes seat, int passengerCount) {
 		for(int jumpBlocks=0 ; jumpBlocks < 4 ; jumpBlocks++ ) { //4 is max row size
 			for(Block block : map.values() ) {
 				int[][] unitBlock = block.getBlock();
 				for(int i=0; i< unitBlock.length ; i++) {
 					for(int j=0; j< unitBlock[0].length ; j++) {
 						count = setPrioritySeats(count, seat, jumpBlocks, block, unitBlock, i, j);
+						//See if all passengers are allocated
+						if(passengerCount <= count) {
+							return count;
+						}
 					}
 				}
 				block.setBlock(unitBlock);
@@ -59,8 +66,10 @@ public class SeatingArragement {
 		return count;
 	}
 
-	private static int setPrioritySeats(int count, SeatTypes seat, int jumpBlocks, Block block, int[][] unitBlock,
-			int i, int j) {
+	private static int setPrioritySeats(int count, SeatTypes seat, int jumpBlocks, 
+									Block block, int[][] unitBlock,int i, int j) {
+		
+		
 		if( SeatTypes.AISLE.equals(seat)) {
 			if(i == jumpBlocks && (block instanceof BlockA  && j==0 ) ||
 					(block instanceof BlockD  && j==unitBlock[0].length-1)){
@@ -79,6 +88,7 @@ public class SeatingArragement {
 			}
 		}else if(SeatTypes.MIDDLE.equals(seat)){
 			count = setMiddleSeats(count, jumpBlocks, unitBlock, i, j);
+			
 		}
 		return count;
 	}
