@@ -24,26 +24,42 @@ public class SeatingArragementNewApp {
 		int count =0;
 		
 		//TODO:: max Row size is hardcoded
+		//Adding Aisle Seats
+		
+		count = setAisleSeats(map, count);
+		
+		//Adding Window Seats
+		count = setWindowSeats(map, count);
+		
+		//Adding Middle Seats
+		setMiddleSeats(map, count);
+			
+		System.out.println("val ==============>");
+		
+		
+		printSeatAllocation(map);
+		
+
+	}
+
+	private static void setMiddleSeats(Map<String, Block> map, int count) {
 		for(int jumpBlocks=0 ; jumpBlocks < 4 ; jumpBlocks++ ) { //4 is max row size
 			for(Block block : map.values() ) {
 				int[][] unitBlock = block.getBlock();
 				for(int i=0; i< unitBlock.length ; i++) {
 					for(int j=0; j< unitBlock[0].length ; j++) {
-						if( i == jumpBlocks  ) {
-							if((block instanceof BlockA  && j==0 ) ||
-									(block instanceof BlockD  && j==unitBlock[0].length-1)){
-								continue;
-							}
-							if(j==unitBlock[0].length-1 || j==0) {
-								unitBlock[i][j] = ++count; 
-							}
+						if(i == jumpBlocks &&  !(j==0  || j == unitBlock[0].length-1) ){
+							unitBlock[i][j] = ++count;
 						}
+
 					}
 				}
 				block.setBlock(unitBlock);
 			}
 		}
-		
+	}
+
+	private static int setWindowSeats(Map<String, Block> map, int count) {
 		for(int jumpBlocks=0 ; jumpBlocks < 4 ; jumpBlocks++ ) { //4 is max row size
 			for(Block block : map.values() ) {
 				int[][] unitBlock = block.getBlock();
@@ -64,31 +80,30 @@ public class SeatingArragementNewApp {
 				block.setBlock(unitBlock);
 			}
 		}
-		
-		
+		return count;
+	}
+
+	private static int setAisleSeats(Map<String, Block> map, int count) {
 		for(int jumpBlocks=0 ; jumpBlocks < 4 ; jumpBlocks++ ) { //4 is max row size
 			for(Block block : map.values() ) {
 				int[][] unitBlock = block.getBlock();
 				for(int i=0; i< unitBlock.length ; i++) {
 					for(int j=0; j< unitBlock[0].length ; j++) {
-						if(i == jumpBlocks &&  !(j==0  || j == unitBlock[0].length-1) ){
-							unitBlock[i][j] = ++count;
+						if( i == jumpBlocks  ) {
+							if((block instanceof BlockA  && j==0 ) ||
+									(block instanceof BlockD  && j==unitBlock[0].length-1)){
+								continue;
+							}
+							if(j==unitBlock[0].length-1 || j==0) {
+								unitBlock[i][j] = ++count; 
+							}
 						}
-
 					}
 				}
 				block.setBlock(unitBlock);
 			}
 		}
-		
-		
-			
-		System.out.println("val ==============>");
-		
-		
-		printSeatAllocation(map);
-		
-
+		return count;
 	}
 
 	private static void printSeatAllocation(Map<String, Block> map) {
