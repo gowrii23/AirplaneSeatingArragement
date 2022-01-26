@@ -1,4 +1,4 @@
-package com;
+package com.interfaces;
 
 public interface Block {
 	public int[][] getBlock();

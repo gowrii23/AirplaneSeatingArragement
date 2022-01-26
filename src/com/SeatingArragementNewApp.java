@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.interfaces.Block;
+import com.serviceBlocks.BlockA;
+import com.serviceBlocks.BlockB;
+import com.serviceBlocks.BlockC;
+import com.serviceBlocks.BlockD;
+
 public class SeatingArragementNewApp {
 
 	public static void main(String[] args) {

@@ -1,6 +1,8 @@
-package com;
+package com.serviceBlocks;
 
-public class BlockA implements Block{
+import com.interfaces.Block;
+
+public class BlockD implements Block {
 	
 	private  int[][] block;
 

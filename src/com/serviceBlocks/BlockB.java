@@ -1,4 +1,6 @@
-package com;
+package com.serviceBlocks;
+
+import com.interfaces.Block;
 
 public class BlockB implements Block {
 	
