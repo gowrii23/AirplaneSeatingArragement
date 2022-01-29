@@ -20,7 +20,7 @@ public class AirplaneSeatTest {
 
         int[][][] output = SeatingArragement.fillSeats(givenInput, passengerCount);
 
-        Assert.assertEquals(output[0][0][givenInput[0][1] - 1], 1);//Always number 1
+        Assert.assertEquals(output[0][0][givenInput[0][1] - 1], 1);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AirplaneSeatTest {
 
         int[][][] output = SeatingArragement.fillSeats(givenInput, passengerCount);
 
-        Assert.assertEquals(output[0][0][givenInput[0][1] - 1], 1);//Always number 1
+        Assert.assertEquals(output[0][0][givenInput[0][1] - 1], 1);
     }
     
     @Test
@@ -50,7 +50,7 @@ public class AirplaneSeatTest {
 
         int[][][] output = SeatingArragement.fillSeats(givenInput, passengerCount);
 
-        Assert.assertNotEquals(output[0][0][givenInput[0][1] - 1], 1);//Always number 1
+        Assert.assertNotEquals(output[0][0][givenInput[0][1] - 1], 1);
     }
     
 }
